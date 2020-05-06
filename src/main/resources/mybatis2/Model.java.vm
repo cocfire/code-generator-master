@@ -1,0 +1,38 @@
+#set ( $sys = ${system} )
+#set ( $dp = ${dynamicPath} )
+#set ( $tpl = ${template} )
+#set ( $suffix = "DO" )
+#if(${table.tableType}=="VIEW")
+	#set ( $suffix = "VO" )
+#end
+#set ( $package = ${sys.config.get("generator.package")} )
+#set ( $className = ${dp.className} )
+package ${package}.database.model;
+
+import org.laziji.commons.mybatis.model.Base${suffix};
+import org.laziji.commons.mybatis.dao.annotations.Table;
+
+import java.util.Date;
+
+#if (${className}!=${table.className})
+@Table(name="${table.tableName}")
+#end
+public class ${className} extends Base${suffix}{
+
+#foreach (${column} in ${table.columns})
+#if (${suffix}=="VO"||${column.attributeName}!="id"&&${column.attributeName}!="gmtCreate"&&${column.attributeName}!="gmtModified")
+	private ${column.attributeType} ${column.attributeName};
+#end
+#end
+
+#foreach (${column} in ${table.columns})
+#if (${suffix}=="VO"||${column.attributeName}!="id"&&${column.attributeName}!="gmtCreate"&&${column.attributeName}!="gmtModified")
+	public void set${column.uppercaseAttributeName}(${column.attributeType} ${column.attributeName}) {
+		this.${column.attributeName} = ${column.attributeName};
+	}
+	public ${column.attributeType} get${column.uppercaseAttributeName}() {
+		return ${column.attributeName};
+	}
+#end
+#end
+}

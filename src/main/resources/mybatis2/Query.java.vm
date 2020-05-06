@@ -1,0 +1,43 @@
+#set ( $sys = ${system} )
+#set ( $dp = ${dynamicPath} )
+#set ( $tpl = ${template} )
+#set ( $suffix = "DO" )
+#if(${table.tableType}=="VIEW")
+    #set ( $suffix = "VO" )
+#end
+#set ( $package = ${sys.config.get("generator.package")} )
+#set ( $className = ${dp.className} )
+package ${package}.database.query;
+
+import ${package}.database.model.${className};
+
+import java.util.Date;
+import org.laziji.commons.mybatis.query.BaseQuery;
+
+
+public class ${className}Query extends BaseQuery<${className}> {
+
+#foreach (${column} in ${table.columns})
+    private ${column.attributeType} ${column.attributeName};
+#if(${column.attributeType}=='String')
+    private ${column.attributeType} ${column.attributeName}Like;
+#end
+#end
+
+#foreach (${column} in $table.columns)
+    public void set${column.uppercaseAttributeName}(${column.attributeType} ${column.attributeName}) {
+        this.${column.attributeName} = ${column.attributeName};
+    }
+    public ${column.attributeType} get${column.uppercaseAttributeName}() {
+        return ${column.attributeName};
+    }
+#if(${column.attributeType}=='String')
+    public void set${column.uppercaseAttributeName}Like(${column.attributeType} ${column.attributeName}Like) {
+        this.${column.attributeName}Like = ${column.attributeName}Like;
+    }
+    public ${column.attributeType} get${column.uppercaseAttributeName}Like() {
+        return ${column.attributeName}Like;
+    }
+#end
+#end
+}

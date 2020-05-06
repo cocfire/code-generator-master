@@ -1,0 +1,15 @@
+
+generator:
+  datasource:
+    # mysql or oracle, default mysql
+    type: mysql
+    url: jdbc:mysql://127.0.0.1:3306/example?characterEncoding=utf-8
+    username: root
+    password: root
+
+  package: com.g.example
+  template:
+    base-path: mybatis-plus
+    output-paths: |
+      Entity.java.vm: src/main/java/{packagePath}/entity/{className}.java
+      Mapper.java.vm: src/main/java/{packagePath}/mapper/{className}Mapper.java

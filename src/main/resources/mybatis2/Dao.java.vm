@@ -1,0 +1,20 @@
+#set ( $sys = ${system} )
+#set ( $dp = ${dynamicPath} )
+#set ( $tpl = ${template} )
+#set ( $suffix = "DO" )
+#if(${table.tableType}=="VIEW")
+    #set ( $suffix = "VO" )
+#end
+#set ( $package = ${sys.config.get("generator.package")} )
+#set ( $className = ${dp.className} )
+package ${package}.database.dao;
+
+import ${package}.database.model.${className};
+
+import org.apache.ibatis.annotations.Mapper;
+import org.laziji.commons.mybatis.dao.${suffix}Dao;
+
+@Mapper
+public interface ${className}Dao extends ${suffix}Dao<${className}> {
+
+}

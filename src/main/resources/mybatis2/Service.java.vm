@@ -1,0 +1,20 @@
+#set ( $sys = ${system} )
+#set ( $dp = ${dynamicPath} )
+#set ( $tpl = ${template} )
+#set ( $suffix = "DO" )
+#if(${table.tableType}=="VIEW")
+    #set ( $suffix = "VO" )
+#end
+#set ( $package = ${sys.config.get("generator.package")} )
+#set ( $className = ${dp.className} )
+package ${package}.database.service;
+
+import org.springframework.stereotype.Service;
+import org.laziji.commons.mybatis.service.Base${suffix}Service;
+
+import ${package}.database.model.${className};
+
+@Service
+public class ${className}Service extends Base${suffix}Service<${className}> {
+
+}

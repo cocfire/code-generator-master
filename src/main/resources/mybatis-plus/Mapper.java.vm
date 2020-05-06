@@ -1,0 +1,30 @@
+#set ( $sys = ${system} )
+#set ( $dp = ${dynamicPath} )
+#set ( $tpl = ${template} )
+#set ( $package = ${sys.config.get("generator.package")} )
+#set ( $className = ${dp.className} )
+package ${package}.mapper;
+
+import ${package}.entity.${className};
+import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Mapper
+@Repository
+public interface ${className}Mapper {
+    @Select("${sql}")
+    List<${className}> selectBySql(@Param("sql") String sql);
+
+    @Insert("insert into ${table.tableName}(#foreach($column in $table.columns)#if($column.columnName != "id"), $column.attributeName#else id#end#end)" +
+        " values(#foreach($column in $table.columns)#if($column.columnName != "id"), #{$column.attributeName}#else #{id}#end#end)")
+    int insertNew(${className} ${table.tableName});
+
+    @Update("update ${table.tableName} set#foreach($column in $table.columns)#if($column.columnName != "id"), $column.attributeName=#{$column.columnName}#else id=#{id}#end#end" +
+        " where id = #{id}")
+    int uopdateBySql(${className} ${table.tableName});
+
+    @Delete("delete from ${table.tableName} where id = #{id}")
+    int deleteById(@Param("id") int id);
+}

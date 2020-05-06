@@ -1,0 +1,30 @@
+#set ( $sys = ${system} )
+#set ( $dp = ${dynamicPath} )
+#set ( $tpl = ${template} )
+#set ( $package = ${sys.config.get("generator.package")} )
+#set ( $className = ${dp.className} )
+package ${package}.database.model;
+
+import java.util.Date;
+import com.alibaba.fastjson.JSON;
+
+public class ${className}{
+
+#foreach ($column in $table.columns)
+	private $column.attributeType $column.attributeName;
+#end
+
+#foreach ($column in $table.columns)
+	public void set${column.uppercaseAttributeName}($column.attributeType $column.attributeName) {
+		this.$column.attributeName = $column.attributeName;
+	}
+	public $column.attributeType get${column.uppercaseAttributeName}() {
+		return $column.attributeName;
+	}
+#end
+
+	@Override
+	public String toString() {
+		return JSON.toJSONString(this);
+	}
+}
