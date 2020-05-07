@@ -3,14 +3,18 @@
 #set ( $tpl = ${template} )
 #set ( $package = ${sys.config.get("generator.package")} )
 #set ( $className = ${dp.className} )
-package ${package}.mapper;
+package com.routon.plcloud.device.data.mapper;
 
-import ${package}.entity.${className};
+import com.routon.plcloud.device.data.entity.${className};
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author FireWang
+ * @date 2020/5/07 15:09
+ */
 @Mapper
 @Repository
 public interface ${className}Mapper {

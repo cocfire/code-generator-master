@@ -22,8 +22,8 @@ public class ExampleTest {
     @Test
     public void test() {
         TableItem tableName1 = TableItem.newBuilder().tableName("table1").dynamicPathVariable(KeyConsts.CLASS_NAME, "TableA").build();
-        TableItem tableName2 = new TableItem("userinfo");
+        TableItem tableName2 = new TableItem("device");
         TableItem[] tableNames = new TableItem[]{tableName2};
-        generatorService.generateZip(tableNames, "./output/userinfo.zip");
+        generatorService.generateZip(tableNames, "./output/device.zip");
     }
 }

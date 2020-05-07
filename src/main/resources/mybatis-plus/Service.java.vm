@@ -1,0 +1,17 @@
+#set ( $sys = ${system} )
+#set ( $dp = ${dynamicPath} )
+#set ( $tpl = ${template} )
+#set ( $package = ${sys.config.get("generator.package")} )
+#set ( $className = ${dp.className} )
+package com.routon.plcloud.device.core.Service;
+
+import com.routon.plcloud.device.data.entity.${className};
+
+/**
+ * @author FireWang
+ * @date 2020/5/07 15:09
+ */
+public interface ${className}Service {
+    /* 修改信息 */
+    boolean save(${className} ${table.tableName});
+}

@@ -3,12 +3,12 @@
 #set ( $tpl = ${template} )
 #set ( $package = ${sys.config.get("generator.package")} )
 #set ( $className = ${dp.className} )
-package ${package}.entity;
+package com.routon.plcloud.device.data.entity;
 
 import com.alibaba.fastjson.JSON;
+import java.util.Date;
 
 public class ${className}{
-
 #foreach (${column} in ${table.columns})
 	private ${column.attributeType} ${column.attributeName};
 #end
@@ -26,4 +26,5 @@ public class ${className}{
 	public String toString() {
 	    return JSON.toJSONString(this);
     }
+
 }

@@ -1,0 +1,27 @@
+#set ( $sys = ${system} )
+#set ( $dp = ${dynamicPath} )
+#set ( $tpl = ${template} )
+#set ( $package = ${sys.config.get("generator.package")} )
+#set ( $className = ${dp.className} )
+package com.routon.plcloud.device.core.serviceimpl;
+
+import com.routon.plcloud.device.core.service.${className}Service;
+import com.routon.plcloud.device.data.entity.${className};
+import com.routon.plcloud.device.data.mapper.${className}Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * @author FireWang
+ * @date 2020/5/07 15:09
+ */
+@Service
+public class ${className}ServiceImpl implements ${className}Service {
+    @Autowired
+    private ${className}Mapper ${table.tableName}Mapper;
+
+    @Override
+    public boolean save(${className} ${table.tableName}) {
+        return false;
+    }
+}
