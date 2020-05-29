@@ -27,7 +27,7 @@ public interface ${className}Mapper {
 
     @Update("update ${table.tableName} set#foreach($column in $table.columns)#if($column.columnName != "id"), $column.attributeName=#{$column.columnName}#else id=#{id}#end#end" +
         " where id = #{id}")
-    int uopdateBySql(${className} ${table.tableName});
+    int updateBySql(${className} ${table.tableName});
 
     @Delete("delete from ${table.tableName} where id = #{id}")
     int deleteById(@Param("id") int id);
