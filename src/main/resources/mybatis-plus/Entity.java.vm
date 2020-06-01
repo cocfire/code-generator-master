@@ -8,6 +8,10 @@ package com.routon.plcloud.device.data.entity;
 import com.alibaba.fastjson.JSON;
 import java.util.Date;
 
+/**
+ * @author FireWang
+ * @date 2020/5/07 15:09
+ */
 public class ${className} {
 #foreach (${column} in ${table.columns})
 	private ${column.attributeType} ${column.attributeName};

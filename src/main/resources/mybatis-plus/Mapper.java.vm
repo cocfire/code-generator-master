@@ -18,17 +18,42 @@ import java.util.List;
 @Mapper
 @Repository
 public interface ${className}Mapper {
+
+    /**
+     * 通用查询方法
+     *
+     * @param sql
+     * @return
+     */
     @Select("${sql}")
     List<${className}> selectBySql(@Param("sql") String sql);
 
+    /**
+     * 通用插入方法
+     *
+     * @param ${table.tableName}
+     * @return
+     */
     @Insert("insert into ${table.tableName}(#foreach($column in $table.columns)#if($column.columnName != "id"), $column.attributeName#else id#end#end)" +
         " values(#foreach($column in $table.columns)#if($column.columnName != "id"), #{$column.attributeName}#else #{id}#end#end)")
     int insertNew(${className} ${table.tableName});
 
+    /**
+     * 通用更新方法
+     *
+     * @param ${table.tableName}
+     * @return
+     */
     @Update("update ${table.tableName} set#foreach($column in $table.columns)#if($column.columnName != "id"), $column.attributeName=#{$column.columnName}#else id=#{id}#end#end" +
         " where id = #{id}")
     int updateBySql(${className} ${table.tableName});
 
+    /**
+     * 通用删除方法
+     *
+     * @param id
+     * @return
+     */
     @Delete("delete from ${table.tableName} where id = #{id}")
     int deleteById(@Param("id") int id);
 }
