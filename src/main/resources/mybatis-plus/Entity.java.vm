@@ -8,7 +8,7 @@ package com.routon.plcloud.device.data.entity;
 import com.alibaba.fastjson.JSON;
 import java.util.Date;
 
-public class ${className}{
+public class ${className} {
 #foreach (${column} in ${table.columns})
 	private ${column.attributeType} ${column.attributeName};
 #end
@@ -17,9 +17,11 @@ public class ${className}{
 	public void set${column.uppercaseAttributeName}(${column.attributeType} ${column.attributeName}) {
 		this.${column.attributeName} = ${column.attributeName};
 	}
+
 	public ${column.attributeType} get${column.uppercaseAttributeName}() {
 		return ${column.attributeName};
 	}
+
 #end
 
 	@Override
