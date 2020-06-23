@@ -12,6 +12,12 @@ import com.routon.plcloud.device.data.entity.${className};
  * @date 2020/5/07 15:09
  */
 public interface ${className}Service {
-    /* 修改信息 */
+
+    /**
+     * 修改信息
+     *
+     * @param ${table.tableName}
+     * @return
+     */
     boolean save(${className} ${table.tableName});
 }
