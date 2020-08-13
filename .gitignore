@@ -21,6 +21,3 @@ site-content
 
 src/test/java/pg/laziji/generator/**
 !src/test/java/pg/laziji/generator/ExampleTest.java
-
-src/main/resources/*.yml
-!src/main/resources/application-example.yml
