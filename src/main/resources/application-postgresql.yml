@@ -1,0 +1,17 @@
+
+generator:
+  datasource:
+    # postgresql
+    type: postgresql
+    url: jdbc:postgresql://127.0.0.1:5432/dmil
+    username: postgres
+    password: postgres
+
+  package: org.postgresql.Driver
+  template:
+    base-path: mybatis-plus
+    output-paths: |
+      Entity.java.vm: {className}.java
+      Mapper.java.vm: {className}Mapper.java
+      Service.java.vm: {className}Service.java
+      ServiceImpl.java.vm: {className}ServiceImpl.java
