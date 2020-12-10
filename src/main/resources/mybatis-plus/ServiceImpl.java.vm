@@ -64,6 +64,14 @@ public class ${className}ServiceImpl implements ${className}Service {
     }
 
     @Override
+    public Integer getMaxCount(Map<String, Object> paramMap){
+        String getallsql = "SELECT COUNT(id) FROM ${table.tableName} ";
+        String wheresql = getsql(paramMap);
+        Integer target = ${table.tableName}Mapper.countBySql(getallsql + wheresql);
+        return target;
+    }
+
+    @Override
     public List<${className}> getMaxList(Map<String, Object> paramMap) {
         String getallsql = "SELECT * FROM ${table.tableName} ";
         String limitsql = " order by id desc";

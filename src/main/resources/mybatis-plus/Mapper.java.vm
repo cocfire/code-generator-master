@@ -56,4 +56,13 @@ public interface ${className}Mapper {
      */
     @Delete("delete from ${table.tableName} where id = #{id}")
     int deleteById(@Param("id") int id);
+
+    /**
+     * 通用查询总数方法
+     *
+     * @param sql
+     * @return
+     */
+    @Select("${sql}")
+    int countBySql(@Param("sql") String sql);
 }

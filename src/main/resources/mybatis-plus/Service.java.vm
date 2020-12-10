@@ -49,6 +49,15 @@ public interface ${className}Service {
      ${className} getById(Integer id);
 
     /**
+    * 根据条件获取最大条数
+    *
+    * @param paramMap
+    * @return
+    * @throws Exception
+    */
+    Integer getMaxCount(Map<String, Object> paramMap);
+
+    /**
      * 根据条件获取列表
      *
      * @param paramMap
