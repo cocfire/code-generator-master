@@ -46,7 +46,7 @@ public interface ${className}Service {
      * @param id
      * @return
      */
-        ${className} getById(Integer id);
+     ${className} getById(Integer id);
 
     /**
      * 根据条件获取列表
