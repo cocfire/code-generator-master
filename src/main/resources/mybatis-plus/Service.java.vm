@@ -7,6 +7,9 @@ package com.routon.plcloud.device.core.Service;
 
 import com.routon.plcloud.device.data.entity.${className};
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author FireWang
  * @date 2020/5/07 15:09
@@ -14,10 +17,54 @@ import com.routon.plcloud.device.data.entity.${className};
 public interface ${className}Service {
 
     /**
-     * 修改信息
+     * 根据格式新增
      *
      * @param ${table.tableName}
      * @return
      */
-    boolean save(${className} ${table.tableName});
+    boolean insert(${className} ${table.tableName});
+
+    /**
+     * 删除记录
+     *
+     * @param ${table.tableName}
+     * @return
+     */
+    boolean delete(${className} ${table.tableName});
+
+    /**
+     * 更新记录
+     *
+     * @param ${table.tableName}
+     * @return
+     */
+    boolean update(${className} ${table.tableName});
+
+    /**
+     * 根据id获取记录
+     *
+     * @param id
+     * @return
+     */
+        ${className} getById(Integer id);
+
+    /**
+     * 根据条件获取列表
+     *
+     * @param paramMap
+     * @return
+     * @throws Exception
+     */
+    List<${className}> getMaxList(Map<String, Object> paramMap);
+
+    /**
+     * 根据条件查询设备列表并分页
+     *
+     * @param paramMap 查询条件Map
+     * @param page     页号
+     * @param pageSize 条数
+     * @return
+     * @throws Exception
+     */
+    List<${className}> searchforpage(Map<String, Object> paramMap, Integer page, Integer pageSize);
 }

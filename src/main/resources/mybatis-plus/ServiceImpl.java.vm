@@ -5,15 +5,20 @@
 #set ( $className = ${dp.className} )
 package com.routon.plcloud.device.core.serviceimpl;
 
-import com.routon.plcloud.device.core.service.${className}Service;
 import com.routon.plcloud.device.data.entity.${className};
 import com.routon.plcloud.device.data.mapper.${className}Mapper;
+import com.routon.plcloud.device.core.service.${className}Service;
+import com.routon.plcloud.device.core.utils.ConvUtil;
+import com.routon.plcloud.device.core.utils.SqlUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author FireWang
- * @date 2020/5/07 15:09
+ * @date 2020/12/10 10:00
  */
 @Service
 public class ${className}ServiceImpl implements ${className}Service {
@@ -21,7 +26,79 @@ public class ${className}ServiceImpl implements ${className}Service {
     private ${className}Mapper ${table.tableName}Mapper;
 
     @Override
-    public boolean save(${className} ${table.tableName}) {
-        return false;
+    public boolean insert(${className} ${table.tableName}) {
+        if (${table.tableName}Mapper.insertNew(${table.tableName}) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean delete(${className} ${table.tableName}) {
+        if (${table.tableName}Mapper.deleteById(ConvUtil.convToInt(${table.tableName}.getId())) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean update(${className} ${table.tableName}) {
+        boolean succ = false;
+        int ns = ${table.tableName}Mapper.updateBySql(${table.tableName});
+        if (ns > 0) {
+            succ = true;
+        }
+        return succ;
+    }
+
+    @Override
+    public ${className} getById(Integer id) {
+        List<${className}> list = ${table.tableName}Mapper.selectBySql("SELECT * FROM ${table.tableName} where id = " + id);
+        if (list.size() > 0) {
+            return list.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public List<${className}> getMaxList(Map<String, Object> paramMap) {
+        String getallsql = "SELECT * FROM ${table.tableName} ";
+        String limitsql = " order by id desc";
+        String wheresql = getsql(paramMap);
+        List<${className}> target = ${table.tableName}Mapper.selectBySql(getallsql + wheresql + limitsql);
+        return target;
+    }
+
+    @Override
+    public List<${className}> searchforpage(Map<String, Object> paramMap, Integer page, Integer pageSize) {
+        int startrow = pageSize * (page - 1);
+        String getallsql = "SELECT * FROM ${table.tableName} ";
+        String wheresql = getsql(paramMap);
+        String limitsql = " order by id desc limit " + pageSize + " offset " + startrow;
+
+        List<${className}> target = ${table.tableName}Mapper.selectBySql(getallsql + wheresql + limitsql);
+        return target;
+    }
+
+    /**
+     * 公共方法：根据条件获取查询条件sql语句
+     **/
+    private String getsql(Map<String, Object> paramMap) {
+        String wheresql = "where 1=1 ";
+        wheresql += SqlUtil.getLikeSql(paramMap, "remark");
+        wheresql += SqlUtil.getAsSql(paramMap, "id");
+
+        String start = ConvUtil.convToStr(paramMap.get("start")), end = ConvUtil.convToStr(paramMap.get("end"));
+        if (!"".equals(start)) {
+            wheresql = wheresql + " and createtime >= '" + start + "' ";
+        }
+        if (!"".equals(end)) {
+            wheresql = wheresql + " and createtime <= '" + end + "' ";
+        }
+
+        return wheresql;
     }
 }
