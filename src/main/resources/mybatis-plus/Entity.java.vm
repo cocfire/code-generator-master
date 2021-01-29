@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  * @author FireWang
- * @date 2020/5/07 15:09
+ * @date ${sys.utils.time("yyyy/MM/dd HH:mm:ss")}
  */
 public class ${className} {
 #foreach (${column} in ${table.columns})

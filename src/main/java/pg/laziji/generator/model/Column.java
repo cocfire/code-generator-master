@@ -16,6 +16,9 @@ public class Column {
         typeMap.put("smallint", "Integer");
         typeMap.put("mediumint", "Integer");
         typeMap.put("int", "Integer");
+        typeMap.put("int2", "Integer");
+        typeMap.put("int4", "Integer");
+        typeMap.put("int8", "Integer");
         typeMap.put("integer", "Integer");
         typeMap.put("bigint", "Long");
         typeMap.put("float", "Float");

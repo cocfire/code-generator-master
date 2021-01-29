@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * @author FireWang
- * @date 2020/5/07 15:09
+ * @date ${sys.utils.time("yyyy/MM/dd HH:mm:ss")}
  */
 public interface ${className}Service {
 

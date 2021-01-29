@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  * @author FireWang
- * @date 2020/12/10 10:00
+ * @date ${sys.utils.time("yyyy/MM/dd HH:mm:ss")}
  */
 @Service
 public class ${className}ServiceImpl implements ${className}Service {
