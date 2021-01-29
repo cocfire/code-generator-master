@@ -33,4 +33,30 @@ public class ${className} {
 	    return JSON.toJSONString(this);
     }
 
+    /**
+    *	建造者(Builder)模式：构造方法 + 内部类
+    */
+	public ${className}(Builder builder) {
+#foreach (${column} in ${table.columns})
+        this.${column.attributeName} = builder.${column.attributeName};
+#end
+	}
+
+	static class Builder {
+#foreach (${column} in ${table.columns})
+		private ${column.attributeType} ${column.attributeName};
+#end
+
+#foreach (${column} in ${table.columns})
+        public Builder set${column.uppercaseAttributeName}(${column.attributeType} ${column.attributeName}) {
+            this.${column.attributeName} = ${column.attributeName};
+            return this;
+        }
+#end
+
+        public ${className} build() {
+            return new ${className}(this);
+        }
+    }
+
 }
